@@ -1,5 +1,5 @@
 package TicTacToe;
-
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -38,10 +38,10 @@ public class TicTacToe {
 	 public boolean makingMovement(int i, int player) {
 	        if (board[i] == ' ') {
 	            if (player == 0) {
-	                System.out.println("System has played: ");
+	                System.out.println("Played by the System: ");
 	                board[i] = symbol2;
 	            } else {
-	                System.out.println("Player has played: ");
+	                System.out.println("Played by the Player:   ");
 	                board[i] = symbol1;
 	            }
 	            printingBoard();
@@ -51,12 +51,24 @@ public class TicTacToe {
 	            return true;
 	        }
 	    }
+	 public void tossingForFirstTurn(String toss) {
+	        int i = (int) Math.round(Math.random()) % 2;
+	        if ((i == 1 && toss.equals("H")) || (i == 0 && toss.equals("T"))) {
+	            System.out.println("Congratulations! You've won the Toss.");
+	            player = 1;
+	        } else {
+	            System.out.println("You've lost Toss. Computer plays first.");
+	            player = 0;
+	        }
+	    }
 
-	public static void main(String[] args) {
+	 public static void main(String[] args) {
 		System.out.println("---------Welcome to TicTacToe Problem-----------");
 		TicTacToe ticTacToeGame = new TicTacToe();
 		Scanner sc = new Scanner(System.in);
 		ticTacToeGame.creatingBoard();
+		System.out.println("Enter Toss H or T:");
+        ticTacToeGame.tossingForFirstTurn(sc.next());
 		 System.out.println("Choose either O or X: ");
 	    ticTacToeGame.getUserInput(sc.next());
 	    ticTacToeGame.printingBoard();
