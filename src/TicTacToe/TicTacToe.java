@@ -3,9 +3,10 @@ package TicTacToe;
 import java.util.Scanner;
 
 public class TicTacToe {
-	public char board[] = new char[10];
+	 public char board[] = new char[10];
 	 public char symbol1, symbol2;
-	
+	 public int player = 0;
+	 public boolean play = true;
 	 public void creatingBoard() {
 	        for (int i = 1; i < 10; i++) {
 	            board[i] = ' ';
@@ -34,14 +35,22 @@ public class TicTacToe {
 	        System.out.print(horizPart);
 	        System.out.print("\n");
 	 }
-	 public void makeMovement(int i) {
+	 public boolean makingMovement(int i, int player) {
 	        if (board[i] == ' ') {
-	            board[i] = symbol1;
+	            if (player == 0) {
+	                System.out.println("System has played: ");
+	                board[i] = symbol2;
+	            } else {
+	                System.out.println("Player has played: ");
+	                board[i] = symbol1;
+	            }
+	            printingBoard();
+	            
+	            return false;
 	        } else {
-	            System.out.println("Already occupied place.");
+	            return true;
 	        }
-	        printingBoard();
-	 }
+	    }
 
 	public static void main(String[] args) {
 		System.out.println("---------Welcome to TicTacToe Problem-----------");
@@ -52,8 +61,12 @@ public class TicTacToe {
 	    ticTacToeGame.getUserInput(sc.next());
 	    ticTacToeGame.printingBoard();
 	    System.out.println("Enter between (1-9): ");
-	    ticTacToeGame.makeMovement(sc.nextInt());
-
+	    while (ticTacToeGame.play) 
+	    {
+	    	ticTacToeGame.play=ticTacToeGame.makingMovement(sc.nextInt(),1);
+	    	
+	    }
+	    
 	}
 
 }
