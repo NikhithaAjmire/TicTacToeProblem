@@ -33,15 +33,26 @@ public class TicTacToe {
 	        }
 	        System.out.print(horizPart);
 	        System.out.print("\n");
-	    }
+	 }
+	 public void makeMovement(int i) {
+	        if (board[i] == ' ') {
+	            board[i] = symbol1;
+	        } else {
+	            System.out.println("Already occupied place.");
+	        }
+	        printingBoard();
+	 }
 
 	public static void main(String[] args) {
 		System.out.println("---------Welcome to TicTacToe Problem-----------");
 		TicTacToe ticTacToeGame = new TicTacToe();
 		Scanner sc = new Scanner(System.in);
 		ticTacToeGame.creatingBoard();
-		ticTacToeGame.getUserInput(sc.next());
-		ticTacToeGame.printingBoard();
+		 System.out.println("Choose either O or X: ");
+	    ticTacToeGame.getUserInput(sc.next());
+	    ticTacToeGame.printingBoard();
+	    System.out.println("Enter between (1-9): ");
+	    ticTacToeGame.makeMovement(sc.nextInt());
 
 	}
 
